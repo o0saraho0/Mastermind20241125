@@ -12,7 +12,7 @@ function App() {
   const [feedback, setFeedback] = useState(
     Array.from({ length: attempts }, () => Array(inputsPerRow).fill(0))
   );
-  const inputRefs = useRef([]);
+  const inputRefs = useRef(Array.from({ length: attempts }, () => []));
 
   useEffect(() => {
     const generateRandomNumber = () => {
@@ -23,8 +23,7 @@ function App() {
       }
       return res;
     };
-    const randomAnswer = generateRandomNumber();
-    setAnswer(randomAnswer);
+    setAnswer(generateRandomNumber());
   }, []);
 
   const handleInput = (rowIndex, inputIndex, event) => {
@@ -55,9 +54,11 @@ function App() {
       answerSet.delete(digit);
     });
 
-    const newFeedback = [...feedback];
-    newFeedback[activeRow] = guessFeedback;
-    setFeedback(newFeedback);
+    setFeedback((prev) => {
+      const newFeedback = [...prev];
+      newFeedback[activeRow] = guessFeedback;
+      return newFeedback;
+    });
 
     if (guessDigits.join("") === answer) {
       alert("Congratulations! You guessed correctly!");
@@ -85,9 +86,6 @@ function App() {
                     type="text"
                     maxLength="1"
                     ref={(el) => {
-                      if (!inputRefs.current[rowIndex]) {
-                        inputRefs.current[rowIndex] = [];
-                      }
                       inputRefs.current[rowIndex][inputIndex] = el;
                     }}
                     onChange={(e) => handleInput(rowIndex, inputIndex, e)}

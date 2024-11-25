@@ -41,9 +41,11 @@ p {
 }
 
 .game_row input {
-  width: 25px;
-  height: 25px;
   margin-right: 10px;
+  text-align: center;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
 }
 
 .green_circle {
