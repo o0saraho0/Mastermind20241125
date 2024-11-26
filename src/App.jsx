@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FaCircle } from "react-icons/fa";
+import Modal from "./Modal";
 import "./App.css";
 
 function App() {
@@ -11,18 +12,22 @@ function App() {
   const [feedback, setFeedback] = useState(
     Array.from({ length: attempts }, () => Array(inputsPerRow).fill(0))
   );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
   const inputRefs = useRef(Array.from({ length: attempts }, () => []));
 
+  const generateRandomNumber = () => {
+    let res = "";
+    for (let i = 0; i < 4; i++) {
+      const digit = Math.floor(Math.random() * 10);
+      res += digit.toString();
+    }
+    return res;
+  };
+
   useEffect(() => {
-    const generateRandomNumber = () => {
-      let res = "";
-      for (let i = 0; i < 4; i++) {
-        const digit = Math.floor(Math.random() * 10);
-        res += digit.toString();
-      }
-      return res;
-    };
-    setAnswer(generateRandomNumber());
+    const res = generateRandomNumber();
+    setAnswer(res);
   }, []);
 
   const handleInput = (rowIndex, inputIndex, event) => {
@@ -33,7 +38,8 @@ function App() {
         inputRefs.current[rowIndex][inputIndex + 1].focus();
       }
     } else {
-      alert("Please enter a number from 0-9");
+      setModalMessage("Please enter a number from 0-9");
+      setIsModalOpen(true);
       event.target.value = "";
     }
   };
@@ -47,10 +53,15 @@ function App() {
     guessDigits.forEach((digit, i) => {
       if (digit === answerDigits[i]) {
         guessFeedback[i] = 2;
-      } else if (answerSet.has(digit)) {
-        guessFeedback[i] = 1;
+        answerSet.delete(digit);
       }
-      answerSet.delete(digit);
+    });
+
+    guessDigits.forEach((digit, i) => {
+      if (answerSet.has(digit)) {
+        guessFeedback[i] = 1;
+        answerSet.delete(digit);
+      }
     });
 
     setFeedback((prev) => {
@@ -60,14 +71,38 @@ function App() {
     });
 
     if (guessDigits.join("") === answer) {
-      alert("Congratulations! You guessed correctly!");
+      setModalMessage("Congratulations! You guessed correctly.");
+      setIsModalOpen(true);
     } else {
       if (activeRow < attempts - 1) {
         setActiveRow(activeRow + 1);
       } else {
-        alert(`Game over! The correct answer was ${answer}.`);
+        setModalMessage(`Game over, the answer is ${answer}...`);
+        setIsModalOpen(true);
       }
     }
+  };
+
+  const resetGame = () => {
+    setAnswer(generateRandomNumber());
+    setActiveRow(0);
+    setFeedback(
+      Array.from({ length: attempts }, () => Array(inputsPerRow).fill(0))
+    );
+    inputRefs.current.forEach((row) => {
+      row.forEach((input) => {
+        if (input) {
+          input.value = "";
+        }
+      });
+    });
+    setIsModalOpen(false);
+  };
+
+  const feedbackColors = {
+    2: "green_circle",
+    1: "orange_circle",
+    0: "grey_circle",
   };
 
   return (
@@ -75,7 +110,7 @@ function App() {
       <h1>MasterMind</h1>
       <div className="game">
         <div className="game_board">
-          <div>The Answer is: {answer}</div>
+          {/* <div>The Answer is: {answer}</div> */}
           <div>
             {Array.from({ length: attempts }).map((_, rowIndex) => (
               <div key={rowIndex} className="game_row">
@@ -93,15 +128,9 @@ function App() {
                 ))}
 
                 <div className="feedback">
-                  {feedback[rowIndex].map((value, i) => {
-                    if (value === 2) {
-                      return <FaCircle key={i} className="green_circle" />;
-                    }
-                    if (value === 1) {
-                      return <FaCircle key={i} className="orange_circle" />;
-                    }
-                    return <FaCircle key={i} className="grey_circle" />;
-                  })}
+                  {feedback[rowIndex].map((value, i) => (
+                    <FaCircle key={i} className={feedbackColors[value]} />
+                  ))}
                 </div>
 
                 {rowIndex === activeRow ? (
@@ -153,6 +182,14 @@ function App() {
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <Modal
+          message={modalMessage}
+          onClose={() => setIsModalOpen(false)}
+          onPlay={resetGame}
+        />
+      )}
     </main>
   );
 }
