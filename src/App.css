@@ -4,7 +4,12 @@
 }
 
 main {
-  margin: 5vh 8vw;
+  padding: 8vh 8vw;
+  height: 100vh;
+  background-image: url("/public/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 h1 {
@@ -22,10 +27,14 @@ p {
   margin-bottom: 2.5vh;
 }
 
+p {
+  font-size: 18px;
+}
+
 .game {
   display: grid;
   grid-template-columns: 3fr 2fr;
-  gap: 5vw;
+  gap: 1vw;
 }
 
 .game_board {
@@ -44,8 +53,9 @@ p {
   margin-right: 1vw;
   text-align: center;
   vertical-align: middle;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
+  font-size: 16px;
 }
 
 button {
