@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { FaCircle } from "react-icons/fa";
-import { FaRegCircle } from "react-icons/fa";
 import "./App.css";
 
 function App() {
@@ -46,7 +45,7 @@ function App() {
     const guessFeedback = Array(inputsPerRow).fill(0);
 
     guessDigits.forEach((digit, i) => {
-      if (digit.toString() === answerDigits[i]) {
+      if (digit === answerDigits[i]) {
         guessFeedback[i] = 2;
       } else if (answerSet.has(digit)) {
         guessFeedback[i] = 1;
@@ -92,26 +91,24 @@ function App() {
                     disabled={rowIndex !== activeRow}
                   ></input>
                 ))}
-                <div>
-                  {feedback[rowIndex]?.map((value, i) => {
-                    if (value === 2)
+
+                <div className="feedback">
+                  {feedback[rowIndex].map((value, i) => {
+                    if (value === 2) {
                       return <FaCircle key={i} className="green_circle" />;
-                    if (value === 1)
+                    }
+                    if (value === 1) {
                       return <FaCircle key={i} className="orange_circle" />;
-                    return <FaRegCircle key={i} className="empty_circle" />;
+                    }
+                    return <FaCircle key={i} className="grey_circle" />;
                   })}
                 </div>
-                <button
-                  onClick={checkAnswer}
-                  disabled={
-                    !inputRefs.current[activeRow] ||
-                    inputRefs.current[activeRow].some(
-                      (input) => !input || !input.value
-                    )
-                  }
-                >
-                  Check
-                </button>
+
+                {rowIndex === activeRow ? (
+                  <button onClick={checkAnswer}>Check</button>
+                ) : (
+                  <></>
+                )}
               </div>
             ))}
           </div>
@@ -135,24 +132,23 @@ function App() {
 
           <div className="circle_rule">
             <p>
-              <span className="green_circle">
+              <span className="circle green_circle">
                 <FaCircle />
               </span>
               A green circle means the number and its position is correct.
             </p>
             <p>
-              <span className="orange_circle">
+              <span className="circle orange_circle">
                 <FaCircle />
               </span>
               An orange circle means that the number exists in the combination
               but the position is not correct.
             </p>
             <p>
-              <span>
-                <FaRegCircle />
+              <span className="circle grey_circle">
+                <FaCircle />
               </span>
-              An empty circle means that number is not in the combination at
-              all.
+              A grey circle means that number is not in the combination at all.
             </p>
           </div>
         </div>

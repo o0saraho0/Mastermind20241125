@@ -4,28 +4,28 @@
 }
 
 main {
-  margin: 50px 100px;
+  margin: 5vh 5vw;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 5vh;
 }
 
 h2 {
-  margin-bottom: 20px;
+  margin-bottom: 2.5vh;
   text-align: center;
 }
 
 h3,
 p {
-  margin-bottom: 10px;
+  margin-bottom: 2.5vh;
 }
 
 .game {
   display: grid;
   grid-template-columns: 3fr 2fr;
-  gap: 50px;
+  gap: 5vw;
 }
 
 .game_board {
@@ -37,15 +37,28 @@ p {
 .game_row {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 2.5vh;
 }
 
 .game_row input {
-  margin-right: 10px;
+  margin-right: 1vw;
   text-align: center;
   vertical-align: middle;
   width: 30px;
   height: 30px;
+}
+
+button {
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: antiquewhite;
+}
+
+.feedback {
+  margin: auto 2.5vw;
 }
 
 .green_circle {
@@ -54,4 +67,25 @@ p {
 
 .orange_circle {
   color: orange;
+}
+
+.grey_circle {
+  color: grey;
+}
+
+@media (max-width: 768px) {
+  .game {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+  }
+
+  .game_board {
+    width: 100%;
+  }
+
+  .game_rule {
+    width: 70%;
+    margin: auto;
+  }
 }
