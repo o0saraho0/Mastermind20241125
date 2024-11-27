@@ -1,9 +1,15 @@
 import "./Modal.css";
 
 function Modal({ message, onClose, onPlay }) {
+  const modalClass = message.includes("Congratulations")
+    ? "win"
+    : message.includes("over")
+    ? "lose"
+    : "";
+
   return (
-    <div className="modal">
-      <p>{message}</p>
+    <div className={`modal ${modalClass}`}>
+      <h3>{message}</h3>
       <div className="selection">
         <button onClick={onPlay}>Reset</button>
         <button onClick={onClose}>Close</button>

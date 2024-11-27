@@ -11,6 +11,24 @@
   text-align: center;
 }
 
+.win {
+  padding: 150px;
+  background-image: url("/public/win.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+}
+
+.lose {
+  padding: 150px;
+  background-image: url("/public/lose.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+}
+
 .selection {
   display: flex;
   justify-content: center;
