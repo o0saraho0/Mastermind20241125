@@ -8,7 +8,7 @@ function Modal({ message, onClose, onPlay }) {
     : "";
 
   return (
-    <div className={`modal ${modalClass}`}>
+    <div className={`${modalClass} modal`}>
       <h3>{message}</h3>
       <div className="selection">
         <button onClick={onPlay}>Reset</button>
