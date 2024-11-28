@@ -38,8 +38,7 @@ function GameBoard() {
         inputRefs.current[rowIndex][inputIndex + 1].focus();
       }
     } else {
-      setModalMessage("Please enter a number from 0-9");
-      setIsModalOpen(true);
+      alert("Please enter a number from 0-9");
       event.target.value = "";
     }
   };

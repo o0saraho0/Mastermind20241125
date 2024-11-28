@@ -3,38 +3,22 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 100px;
-  background-color: white;
+  padding: 150px;
   border-radius: 10px;
-  border: 2px dashed black;
   z-index: 1;
   text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
 }
 
 .win {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 150px;
   background-image: url("/public/win.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: none;
 }
 
 .lose {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 150px;
   background-image: url("/public/lose.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: none;
 }
 
 .selection {
