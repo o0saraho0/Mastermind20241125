@@ -5,7 +5,7 @@
 
 main {
   padding: 8vh 8vw;
-  height: 100vh;
+  height: 90vh;
   background-image: url("/public/background.jpg");
   background-size: cover;
   background-position: center;
@@ -31,33 +31,6 @@ p {
   font-size: 18px;
 }
 
-.game {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 1vw;
-}
-
-.game_board {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.game_row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 2.5vh;
-}
-
-.game_row input {
-  margin-right: 1vw;
-  text-align: center;
-  vertical-align: middle;
-  width: 35px;
-  height: 35px;
-  font-size: 16px;
-}
-
 button {
   padding: 5px 15px;
   border-radius: 10px;
@@ -67,23 +40,17 @@ button:hover {
   background-color: antiquewhite;
 }
 
-.feedback {
-  margin: auto 2.5vw;
-}
-
-.green_circle {
-  color: green;
-}
-
-.orange_circle {
-  color: orange;
-}
-
-.grey_circle {
-  color: grey;
+.game {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1vw;
 }
 
 @media (max-width: 768px) {
+  main {
+    height: 160vh;
+  }
+
   .game {
     display: flex;
     flex-direction: column;

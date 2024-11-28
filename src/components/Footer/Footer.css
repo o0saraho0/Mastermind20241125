@@ -1,0 +1,39 @@
+.sarah-content {
+  margin-top: 5vh;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.sarah-pic img {
+  height: 70px;
+  width: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50px;
+}
+
+.sarah-contact {
+  display: flex;
+  justify-content: space-around;
+}
+
+.sarah-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sarah-info p {
+  margin-bottom: 8px;
+}
+
+.sarah-contact a {
+  font-size: x-large;
+  color: #55ad9b;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.sarah-contact a:hover {
+  transform: scale(1.1);
+}
