@@ -48,7 +48,7 @@ button:hover {
 
 @media (max-width: 768px) {
   main {
-    height: 160vh;
+    height: 100%;
   }
 
   .game {

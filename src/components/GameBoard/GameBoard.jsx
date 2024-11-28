@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FaCircle } from "react-icons/fa";
+import { IoRefresh } from "react-icons/io5";
 import Modal from "../Modal/Modal";
 import "./GameBoard.css";
 
@@ -108,6 +109,10 @@ function GameBoard() {
     <div>
       <div className="game_board">
         {/* <div>The Answer is: {answer}</div> */}
+        <div className="refresh">
+          <IoRefresh onClick={resetGame} />
+        </div>
+
         <div>
           {Array.from({ length: attempts }).map((_, rowIndex) => (
             <div key={rowIndex} className="game_row">

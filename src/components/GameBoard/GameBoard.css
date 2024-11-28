@@ -1,3 +1,18 @@
+.refresh {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.refresh svg {
+  font-size: x-large;
+}
+
+.refresh svg:hover {
+  color: #55ad9b;
+  cursor: pointer;
+}
+
 .game_board {
   display: flex;
   flex-direction: column;
