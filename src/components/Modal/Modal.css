@@ -1,4 +1,8 @@
 .win {
+  background-image: url("/public/win.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -7,14 +11,13 @@
   border-radius: 10px;
   z-index: 1;
   text-align: center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: none;
-  background-image: url("/public/win.jpg");
 }
 
 .lose {
+  background-image: url("/public/lose.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -23,11 +26,6 @@
   border-radius: 10px;
   z-index: 1;
   text-align: center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: none;
-  background-image: url("/public/lose.jpg");
 }
 
 .selection {
